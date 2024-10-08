@@ -1,4 +1,74 @@
-llama3-8b-8192, temperature=0.0, zero-shot, random_state=111
+-------------The following is the binary classification result using LoRA-Tuned LLaMA---------------
+meta-llama/Meta-Llama-3.1-8B-Instruct, 2^2 augment, 4bit, 
+BATCH_SIZE=8, max_len=512, LR=5e-5, EPOCH=1
+              precision    recall  f1-score   support
+      Common     0.9965    0.9941    0.9953      6595
+      Unique     0.3390    0.4651    0.3922        43
+    accuracy                         0.9907      6638
+   macro avg     0.6677    0.7296    0.6937      6638
+weighted avg     0.9922    0.9907    0.9914      6638
+[[6556   39]
+ [  23   20]]
+
+meta-llama/Meta-Llama-3.1-8B-Instruct, 2^2 augment, 4bit, class_balanced, 
+BATCH_SIZE=8, max_len=512, LR=5e-5, EPOCH=1
+              precision    recall  f1-score   support
+      Common     0.9955    0.9970    0.9962      6595
+      Unique     0.3939    0.3023    0.3421        43
+    accuracy                         0.9925      6638
+   macro avg     0.6947    0.6496    0.6692      6638
+weighted avg     0.9916    0.9925    0.9920      6638
+[[6575   20]
+ [  30   13]]
+
+meta-llama/Meta-Llama-3.1-8B-Instruct, 2^2 augment, 8bit, 
+BATCH_SIZE=4, max_len=512, LR=5e-5, EPOCH=1
+              precision    recall  f1-score   support
+      Common     0.9962    0.9983    0.9973      6595
+      Unique     0.6207    0.4186    0.5000        43
+    accuracy                         0.9946      6638
+   macro avg     0.8085    0.7085    0.7486      6638
+weighted avg     0.9938    0.9946    0.9941      6638
+[[6584   11]
+ [  25   18]]
+
+meta-llama/Meta-Llama-3.1-8B-Instruct, 2^2 augment, 8bit, class_balanced,
+BATCH_SIZE=4, max_len=512, LR=5e-5, EPOCH=1
+              precision    recall  f1-score   support
+      Common     0.9967    0.9962    0.9964      6595
+      Unique     0.4565    0.4884    0.4719        43
+    accuracy                         0.9929      6638
+   macro avg     0.7266    0.7423    0.7342      6638
+weighted avg     0.9932    0.9929    0.9930      6638
+[[6570   25]
+ [  22   21]]
+
+meta-llama/Meta-Llama-3.1-8B-Instruct, 2^2 augment, 8bit, 
+BATCH_SIZE=4, max_len=512, LR=2e-5, EPOCH=1
+              precision    recall  f1-score   support
+      Common     0.9952    0.9964    0.9958      6595
+      Unique     0.3143    0.2558    0.2821        43
+    accuracy                         0.9916      6638
+   macro avg     0.6547    0.6261    0.6389      6638
+weighted avg     0.9907    0.9916    0.9911      6638
+[[6571   24]
+ [  32   11]]
+
+
+meta-llama/Meta-Llama-3.1-8B-Instruct, 2^2 augment, 8bit, class_balanced, testset_with_prompt
+BATCH_SIZE=4, max_len=512, LR=2e-5, EPOCH=1, random_state=111
+              precision    recall  f1-score   support
+      Common     0.9951    0.9930    0.9941      6595
+      Unique     0.1930    0.2558    0.2200        43
+    accuracy                         0.9882      6638
+   macro avg     0.5941    0.6244    0.6070      6638
+weighted avg     0.9899    0.9882    0.9891      6638
+[[6549   46]
+ [  32   11]]
+
+---------The following is the binary classification result using vanill LLaMA-------
+
+Llama-3.1-8B-Instruct, temperature=0.0
 system = '''You are a laptop assistant with fruitful knowledge. You know that
         {} contains novel needs, {} contains novel needs, {} does not contain novel needs, {} does not contain novel needs.
         '''.format(df.text[0], df.text[1], df.text[200], df.text[201])
@@ -11,113 +81,3 @@ prompt = f'''The user comment contains novel needs or not? Answer 1 for yes and 
 weighted avg     0.9926    0.7023    0.8189      6638
 [[4624 1971]
  [   5   38]]
- 
-meta-llama/Meta-Llama-3.1-8B-Instruct, 2^2 augment, 4bit, 
-BATCH_SIZE=8, max_len=512, LR=5e-5, EPOCH=1, random_state=111
-              precision    recall  f1-score   support
-      Common     0.9965    0.9941    0.9953      6595
-      Unique     0.3390    0.4651    0.3922        43
-    accuracy                         0.9907      6638
-   macro avg     0.6677    0.7296    0.6937      6638
-weighted avg     0.9922    0.9907    0.9914      6638
-[[6556   39]
- [  23   20]]
-
-meta-llama/Meta-Llama-3.1-8B-Instruct, 2^2 augment, 4bit, class_balanced, 
-BATCH_SIZE=8, max_len=512, LR=5e-5, EPOCH=1, random_state=111
-              precision    recall  f1-score   support
-      Common     0.9955    0.9970    0.9962      6595
-      Unique     0.3939    0.3023    0.3421        43
-    accuracy                         0.9925      6638
-   macro avg     0.6947    0.6496    0.6692      6638
-weighted avg     0.9916    0.9925    0.9920      6638
-[[6575   20]
- [  30   13]]
-
-meta-llama/Meta-Llama-3.1-8B-Instruct, 2^2 augment, 8bit, 
-BATCH_SIZE=4, max_len=512, LR=5e-5, EPOCH=1, random_state=111
-              precision    recall  f1-score   support
-      Common     0.9962    0.9983    0.9973      6595
-      Unique     0.6207    0.4186    0.5000        43
-    accuracy                         0.9946      6638
-   macro avg     0.8085    0.7085    0.7486      6638
-weighted avg     0.9938    0.9946    0.9941      6638
-[[6584   11]
- [  25   18]]
-
-meta-llama/Meta-Llama-3.1-8B-Instruct, 2^2 augment, 8bit, class_balanced,
-BATCH_SIZE=4, max_len=512, LR=5e-5, EPOCH=1, random_state=111
-              precision    recall  f1-score   support
-      Common     0.9967    0.9962    0.9964      6595
-      Unique     0.4565    0.4884    0.4719        43
-    accuracy                         0.9929      6638
-   macro avg     0.7266    0.7423    0.7342      6638
-weighted avg     0.9932    0.9929    0.9930      6638
-[[6570   25]
- [  22   21]]
-
-meta-llama/Meta-Llama-3.1-8B-Instruct, 2^2 augment, 8bit, testset_with_prompt
-BATCH_SIZE=4, max_len=512, LR=5e-5, EPOCH=1, random_state=111
-              precision    recall  f1-score   support
-      Common     0.9935    1.0000    0.9968      6595
-      Unique     0.0000    0.0000    0.0000        43
-    accuracy                         0.9935      6638
-   macro avg     0.4968    0.5000    0.4984      6638
-weighted avg     0.9871    0.9935    0.9903      6638
-[[6595    0]
- [  43    0]]
-
-meta-llama/Meta-Llama-3.1-8B-Instruct, 2^2 augment, 8bit, class_balanced, testset_with_prompt
-BATCH_SIZE=4, max_len=512, LR=5e-5, EPOCH=1, random_state=111
-              precision    recall  f1-score   support
-      Common     0.9935    1.0000    0.9968      6595
-      Unique     0.0000    0.0000    0.0000        43
-    accuracy                         0.9935      6638
-   macro avg     0.4968    0.5000    0.4984      6638
-weighted avg     0.9871    0.9935    0.9903      6638
-[[6595    0]
- [  43    0]]
-
-meta-llama/Meta-Llama-3.1-8B-Instruct, 2^2 augment, 8bit, 
-BATCH_SIZE=4, max_len=512, LR=2e-5, EPOCH=1, random_state=111
-              precision    recall  f1-score   support
-      Common     0.9952    0.9964    0.9958      6595
-      Unique     0.3143    0.2558    0.2821        43
-    accuracy                         0.9916      6638
-   macro avg     0.6547    0.6261    0.6389      6638
-weighted avg     0.9907    0.9916    0.9911      6638
-[[6571   24]
- [  32   11]]
-
-meta-llama/Meta-Llama-3.1-8B-Instruct, 2^2 augment, 8bit, class_balanced,
-BATCH_SIZE=4, max_len=512, LR=2e-5, EPOCH=1, random_state=111
-              precision    recall  f1-score   support
-      Common     0.9935    1.0000    0.9968      6595
-      Unique     0.0000    0.0000    0.0000        43
-    accuracy                         0.9935      6638
-   macro avg     0.4968    0.5000    0.4984      6638
-weighted avg     0.9871    0.9935    0.9903      6638
-[[6595    0]
- [  43    0]]
-
-meta-llama/Meta-Llama-3.1-8B-Instruct, 2^2 augment, 8bit, testset_with_prompt
-BATCH_SIZE=4, max_len=512, LR=2e-5, EPOCH=1, random_state=111
-              precision    recall  f1-score   support
-      Common     0.9935    1.0000    0.9968      6595
-      Unique     0.0000    0.0000    0.0000        43
-    accuracy                         0.9935      6638
-   macro avg     0.4968    0.5000    0.4984      6638
-weighted avg     0.9871    0.9935    0.9903      6638
-[[6595    0]
- [  43    0]]
-
-meta-llama/Meta-Llama-3.1-8B-Instruct, 2^2 augment, 8bit, class_balanced, testset_with_prompt
-BATCH_SIZE=4, max_len=512, LR=2e-5, EPOCH=1, random_state=111
-              precision    recall  f1-score   support
-      Common     0.9951    0.9930    0.9941      6595
-      Unique     0.1930    0.2558    0.2200        43
-    accuracy                         0.9882      6638
-   macro avg     0.5941    0.6244    0.6070      6638
-weighted avg     0.9899    0.9882    0.9891      6638
-[[6549   46]
- [  32   11]]
